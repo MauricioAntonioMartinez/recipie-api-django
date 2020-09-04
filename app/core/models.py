@@ -1,7 +1,6 @@
+from django.contrib.auth.models import (AbstractBaseUser, BaseUserManager,
+                                        PermissionsMixin)
 from django.db import models
-from django.contrib.auth.models import (
-    BaseUserManager, AbstractBaseUser, PermissionsMixin
-)
 
 
 class UserManager(BaseUserManager):
@@ -40,6 +39,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     # if the user is active or not
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
+    logout = models.BooleanField(default=True)
 
     objects = UserManager()
 
