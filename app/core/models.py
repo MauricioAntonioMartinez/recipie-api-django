@@ -44,3 +44,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
+
+# make migrations docker-compose run app
+# sh -c "python manage.py makemigrations core"
