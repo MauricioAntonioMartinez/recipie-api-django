@@ -8,23 +8,31 @@ from core import models
 class UserAdmin(BaseUserAdmin):
     ordering = ['id']
     list_display = ['email', 'name']
-    # each of this ones is a section
     fieldsets = (
-        (None, {'fields': ('email', 'password')}),
-        (_("Personal info"), {"fields": ("name",)}),
+        (None, {'fields':  ('email', 'password')}),
+        (_('Personal Info'), {'fields': ('name',)}),
         (
-            _("Permissions"), {
-                "fields": ("is_active", "is_staff", "is_superuser")}
+            _('Permissions'),
+            {
+                'fields': ('is_active', 'is_staff', 'is_superuser')
+            }
         ),
-        (_("Important dates"), {"fields": ("last_login", "logout")})
+        (
+            _('Important Dates'), {
+                'fields': ('last_login',)
+            }
+        )
     )
     add_fieldsets = (
         (None, {
-            'classes': ('wide',),  # classes to the page
-            'fields': ('email', 'password1', 'password2'),
+            'classes': ('wide',),
+            'fields': ('email', 'password1', 'password2')
         }),
     )
 
 
-# Overwrites the admin model from django
 admin.site.register(models.User, UserAdmin)
+admin.site.register(models.Tag)
+admin.site.register(models.Ingredient)
+admin.site.register(models.Recipe)
+# register the modified user admin

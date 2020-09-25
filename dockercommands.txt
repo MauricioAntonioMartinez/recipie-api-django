@@ -1,0 +1,5 @@
+docker-compose run app -sh -c "<command>"
+
+
+
+

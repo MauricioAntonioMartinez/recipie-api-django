@@ -1,0 +1,43 @@
+FROM python:3.7-alpine 
+# 
+LABEL Mcuve WorkOutTracker
+
+ENV PYTHONUNBUFFERED 1
+
+COPY ./requirements.txt /requirements.txt
+
+RUN pip install -r /requirements.txt
+
+RUN mkdir /app
+
+WORKDIR /app
+
+COPY ./app /app
+
+RUN adduser -D user
+# create a user for running our process
+
+USER user
+# switch to the user
+
+
+
+
+
+
+
+
+
+
+version: "3"
+
+services:
+  app:
+    build:
+      context: . # to the current directory
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./app:/app #map the current directory to the app in the container
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:9000"

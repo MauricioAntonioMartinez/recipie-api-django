@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
+
 import os
 from pathlib import Path
 
@@ -20,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'xht%b!padv@i0twcwzo*vt41vl0rl8_kg8n1idp+ol32bw5klq'
+SECRET_KEY = 'ucu=w1b*oq@h0d0jcvpr0ya#m5$2bpzh=0*#5z(&v3fh1x-4+7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,7 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "core"
+    'rest_framework',
+    'rest_framework.authtoken',
+    'core',
+    'user',
+    'recipe',
 ]
 
 MIDDLEWARE = [
@@ -76,11 +81,11 @@ WSGI_APPLICATION = 'app.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': "django.db.backends.postgresql",
-        "HOST": os.environ.get('DB_HOST'),
-        "NAME": os.environ.get('DB_NAME'),
-        "USER": os.environ.get('DB_USER'),
-        "PASSWORD": os.environ.get('DB_PASS'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'HOST': os.environ.get('DB_HOST'),
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASS'),
     }
 }
 
@@ -122,5 +127,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+# 127.0.0.1:8000/static/ this will map to the static directory
+# this maps to the public
+MEDIA_URL = '/media/'
 
-AUTH_USER_MODEL = 'core.User'
+
+STATIC_ROOT = '/vol/web/static'
+
+MEDIA_ROOT = '/vol/web/media'  # this is where to store all the media files
+
+AUTH_USER_MODEL = 'core.User'  # this overrides the default
+# user model to the customized one
