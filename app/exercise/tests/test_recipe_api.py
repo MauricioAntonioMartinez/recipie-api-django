@@ -5,12 +5,12 @@ from core.models import Ingredient, Recipe, Tag
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
-from recipe.serializers import RecipeDetailSerializer, RecipeSerializer
+from exercise.serializers import RecipeDetailSerializer, RecipeSerializer
 from PIL import Image
 from rest_framework import status
 from rest_framework.test import APIClient
 
-RECIPE_URL = reverse('recipe:recipes-list')
+RECIPE_URL = reverse('exercise:recipe-list')
 
 # /api/recipe/recipes
 # /api/recipe/recipes/1/
@@ -19,13 +19,13 @@ RECIPE_URL = reverse('recipe:recipes-list')
 def image_upload_url(recipe_id):
     """Return url fot recipe image upload
     """
-    return reverse('recipe:recipe-upload-image', args=[recipe_id])
+    return reverse('exercise:recipe-upload-image', args=[recipe_id])
 
 
 def detail_url(recipe_id):
     """Return recipe detail URL
     """
-    return reverse('recipe:recipe-detail', args=[recipe_id])
+    return reverse('exercise:recipe-detail', args=[recipe_id])
 
 
 def sample_recipe(user, **params):

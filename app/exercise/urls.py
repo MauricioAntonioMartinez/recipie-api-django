@@ -6,9 +6,9 @@ from .views import IngredientViewSet, RecipeViewSet, TagViewSet
 router = DefaultRouter()  # automatic generate urls
 router.register('tags', TagViewSet)
 router.register('ingredient', IngredientViewSet)
-router.register('recipe', RecipeViewSet)
+router.register('recipes', RecipeViewSet)
 
-app_name = 'recipe'
+app_name = 'exercise'
 
 urlpatterns = [path('', include(router.urls))]
 # all the generated url are registered
